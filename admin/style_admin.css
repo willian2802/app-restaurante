@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a i {
+    color: grey;
+    margin: 10px 0 auto 10px;
+}
+
+body {
+    background-image: url("/img/admin-img.jpg");
+    background-size: cover;
+}
+
+.box h2 {
+    text-align: center;
+}
+
+
+.box {
+    color: white;
+    opacity: 0.9;
+    display: flexbox;
+    flex-direction: column;
+    max-width: 25%;
+    min-width: 20rem;
+    background-color: rgb(32, 24, 24);
+    margin: 150px auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 3px;
+}
+
+.btn-box {
+    display: flex;
+}
+
+.btn-box button {
+    display: flex;
+    margin-top: 1.5rem;
+    margin-left: 3px;
+    width: 50%;
+    padding: 5px;
+}
+

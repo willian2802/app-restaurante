@@ -1,7 +1,11 @@
-nav {
-    height: 50vh;
-    width: 100vw;
-    object-fit: cover;
+* {
+    padding: 0 0 0 0;
+    margin: 0;
+}
+
+nav a {
+    color: grey;
+    margin: 15px;
 }
 
 nav {
@@ -38,10 +42,29 @@ nav figcaption {
     text-align: center;
 }
 
-/* lista de Cardapio */
+/* Cardapio */
 
-.cardapio {
-    width: 10%;
+
+
+.cartao {
+    display: flexbox;
+    margin: 10px auto 10px auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.cardapio img {
+    max-height: 15rem;
+
+}
+
+
+
+.titulo-comida {
+    color: white;
+    background-color: black;
+    width: 100%;
+    border-radius: 20px;
+    text-align: center;
 }
 
 
