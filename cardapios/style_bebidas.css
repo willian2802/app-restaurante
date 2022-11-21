@@ -6,7 +6,8 @@
 
 nav i  {
     color: gray;
-    margin-left: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 nav i:hover{
@@ -28,27 +29,6 @@ nav h1 {
 
 }
 
-nav img{  
-    object-fit: cover;
-    width: 100vw;
-    height: 50vh;
-    text-align: center;
-
-}
-
- 
-nav figcaption {
-    position: absolute;
-    bottom: 70%;
-    left: 120px;
-    right: 100px;
-    font-size: 40px;
-    color: white;
-    text-shadow: 0px 0px 5px black;
-    font-family: 'Taviraj', serif;
-    text-align: center;
-}
-
 /* Cardapio */
 
 .cardapio-space {
@@ -66,6 +46,7 @@ nav figcaption {
     padding: 5px;
     justify-content: center;
     border-radius: 20px;
+    border: solid black;
     
 }
 
@@ -99,8 +80,85 @@ button {
     margin: 10px auto 10px auto;
     width: 100px;
     border-radius: 10px;
-}  
+}
 
+/* request list */
+
+.request-list-space {
+    display: none;
+    color: white;
+    text-align: center;
+    opacity: 0.9;
+    background-color: rgb(32, 24, 24);
+    border-radius: 20px;
+    margin: 35px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.request-space-top h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    margin: auto auto auto auto;
+}
+
+.request-space-top {
+    display: flex;
+}
+
+.request-space-top i {
+    margin-top: 3px;
+    margin-bottom: auto;
+    cursor: pointer;
+}
+
+.request-space-top i:hover {
+    color: red;
+    transition: 0.3s;
+}
+
+
+.request-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.carta-request {
+    display: in;
+    background-color: black;
+    border-radius: 10px;
+    margin: auto;
+    
+}
+
+.carta-request img {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.carta-request input {
+    width: 5rem;
+    margin: auto;
+    text-align: center;
+}
+
+
+.btn-numberUnits {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+
+}
+
+.btnMaisMenos {
+    width: 1.5rem;
+    margin: auto 8px auto 8px;
+    border-radius: 10px;
+    background-color: yellow;
+}
 
 
 
