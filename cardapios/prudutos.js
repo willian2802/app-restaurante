@@ -14,7 +14,7 @@ let produtos = [
             type:"Bebidas",
             price: 3.99,
             numberOfUnits:10,
-            img:'img/bebidas heineken.png',
+            img:'../img/bebidas heineken.png',
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -23,7 +23,7 @@ let produtos = [
             type:"Bebidas",
             price: 4.50,
             numberOfUnits:10,
-            img:'img/SOTARVIL.jpg',
+            img:'../img/SOTARVIL.jpg',
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -32,7 +32,7 @@ let produtos = [
             type:"Bebidas",
             price: 3.50,
             numberOfUnits:10,
-            img:'img/Super-Bock.png',
+            img:'../img/Super-Bock.png',
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -41,7 +41,7 @@ let produtos = [
             type:"Bebidas",
             price: 4.50,
             numberOfUnits:10,
-            img:'img/Monster.webp',
+            img:'../img/Monster.webp',
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -50,7 +50,7 @@ let produtos = [
             type:"Sobremesas",
             price:10,
             numberOfUnits:10,
-            img:"img/bolo-chocolate.jpg",
+            img:"../img/bolo-chocolate.jpg",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -59,7 +59,7 @@ let produtos = [
             type:"Sobremesas",
             price:10,
             numberOfUnits:10,
-            img:"img/bolo-morango.jpg",
+            img:"../img/bolo-morango.jpg",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -68,7 +68,7 @@ let produtos = [
             type:"Salgados",
             price:3,
             numberOfUnits:10,
-            img:"img/coxinha.jpg",
+            img:"../img/coxinha.jpg",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -77,7 +77,7 @@ let produtos = [
             type:"Salgados",
             price:2,
             numberOfUnits:10,
-            img:"img/pastel.jpg",
+            img:"../img/pastel.jpg",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -86,7 +86,7 @@ let produtos = [
             type:"Refeiçoes",
             price:6,
             numberOfUnits:10,
-            img:"img/salada-perfeita-vale-refeicao_0.webp",
+            img:"../img/salada-perfeita-vale-refeicao_0.webp",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            },
            {
@@ -95,7 +95,7 @@ let produtos = [
             type:"Refeiçoes",
             price:7,
             numberOfUnits:10,
-            img:"img/refeiçoes-file.jpg",
+            img:"../img/refeiçoes-file.jpg",
             descriçao:"This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer."
            }
 
