@@ -9,7 +9,7 @@ a i {
 }
 
 body {
-    background-image: url("/img/admin-img.jpg");
+    background-image: url("../img/admin-img.jpg");
     background-size: cover;
 }
 
