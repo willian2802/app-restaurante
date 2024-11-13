@@ -1,4 +1,4 @@
-// send to the server the username, password and action(register or login)
+// send to the server the username, password and action(register, login etc)
 function SendData(event, action) {
     event.preventDefault(); // Evita o comportamento padrão de envio do formulário
     console.log("Sending data to server");
@@ -8,24 +8,30 @@ function SendData(event, action) {
   
     $.ajax({
       type: "POST",
-      url: "/admin-page-process",
+      url: "/login_register_staf",
       contentType: "application/json", // Add this line
       data: JSON.stringify({ // Stringify the data object
         action: acao_desejada,
         value: $("#value").val(),
+        restaurante_name: $("#restaurante_name").val(),
         username: $("#username").val(),
         password: $("#password").val()
       }),
       success: function(response) {
         if (response.success == true) {
           usuario_atual = response.message
-          // Atualiza o conteúdo da página com o historico de listas do usuário
-          render_history_space();
+          // render_history_space();
         } else {
-          // mostra uma mensagem de erro para o usuário
+          // Show a error message to the user
           alert("Login failed: " + response.message);
           console.log(response.message);
         }
       }
     });
   }
+
+let login_register_area = document.querySelector(".box")
+
+function show_interface() {
+
+}

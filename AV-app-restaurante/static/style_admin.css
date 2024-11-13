@@ -3,14 +3,32 @@
     margin: 0;
 }
 
-a i {
-    color: grey;
-    margin: 10px 0 auto 10px;
+
+#new_restaurant_btn {
+ display: inline-block;
+ vertical-align: middle;
+ margin-right: 20px;
+ background-color: yellow;
+ border-radius: 20px;
+ padding: 5px;
 }
+  
+/* .navbar a i {
+ display: inline-block;
+ vertical-align: middle;
+ margin-right: 5px;
+}
+  
+.navbar a span {
+ display: inline-block;
+ vertical-align: middle;
+} */
 
 body {
+    height: 100vh;
     background-image: url("./img/admin-img.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .box h2 {
@@ -34,6 +52,7 @@ body {
 input {
     width: 100%;
     padding: 3px;
+    border-radius: 5px;
 }
 
 .btn-box {
