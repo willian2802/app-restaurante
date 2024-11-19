@@ -1,7 +1,6 @@
 # from flask import session
 # from pymongo.mongo_client import MongoClient
 # from pymongo.server_api import ServerApi
-# from bson.objectid import ObjectId
 
 # # Conecta ao MongoDB pegando o url pelo arquivo .env
 # # no Mongo_URI bote o seu URI do seu mongoDB, no arquivo URL.env

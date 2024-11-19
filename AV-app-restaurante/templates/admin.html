@@ -13,36 +13,38 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <title>Gerente</title>
+    <title>Login</title>
 </head>
 <body>
     <nav class="navbar">
         <a href="/" class="left"><i class="fa-solid fa-arrow-left fa-2x"></i></a>
-        <div id="new_restaurant_btn">
+        <div onclick="new_restaurant_form(event)" id="new_restaurant_btn">
             <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
-            <a onclick="create_restaurante_inter" class="right"><span>Novo Restaurante</span></a>
+            <a class="right"><span>Novo Restaurante</span></a>
         </div>
     </nav>
 
-    <div class="box">
-        <h2>Login - Funcioanarios</h2>
-        <form action="sendData" method="POST">
-            <label>Restaurante:</label>
-            <input id="restaurante_name" class="input" type="text">
-
-            <label >Nome:</label>
-            <input id="username" class="input" type="text">
-
-            <label>Senha:</label>
-            <input id="password" class="input" type="password">
-
-            <div class="btn-box">
-                <button type="button" class="btn btn-primary" onclick="SendData(event, 'login')">Entrar</button>
-                <button type="button" class="btn btn-secondary" onclick="SendData(event, 'register')">Cadastrar</button>
-            </div>
-        </form>
-        
+    <div class="container">
+        <div class="box">
+            <h2>Login - Funcionarios</h2>
+            <form action="sendData" method="POST">
+                <label>Restaurante:</label>
+                <input id="restaurante_name" class="input" type="text">
+    
+                <label >Nome:</label>
+                <input id="username" class="input" type="text">
+    
+                <label>Senha:</label>
+                <input id="password" class="input" type="password">
+    
+                <div class="btn-box">
+                    <button type="button" class="btn btn-primary" onclick="SendData(event, 'login')">Entrar</button>
+                </div>
+            </form>  
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='admin.js') }}"></script>
 </body>
 </html>

@@ -5,33 +5,53 @@ function SendData(event, action) {
   
     acao_desejada = action
     console.log("Action: " + acao_desejada);
+
+  // Corrija o ID do input
+  var inputData = {
+    action: acao_desejada,
+    restaurante_name: $("#restaurante_name").val(),
+    username: $("#username").val(),
+    password: $("#password").val()
+  };
+
+    console.log(inputData);
   
     $.ajax({
       type: "POST",
       url: "/login_register_staf",
-      contentType: "application/json", // Add this line
-      data: JSON.stringify({ // Stringify the data object
-        action: acao_desejada,
-        value: $("#value").val(),
-        restaurante_name: $("#restaurante_name").val(),
-        username: $("#username").val(),
-        password: $("#password").val()
-      }),
+      contentType: "application/json",
+      data: JSON.stringify(inputData), // Remove the extra nesting
       success: function(response) {
-        if (response.success == true) {
-          usuario_atual = response.message
-          // render_history_space();
-        } else {
-          // Show a error message to the user
-          alert("Login failed: " + response.message);
-          console.log(response.message);
-        }
+        // ...
       }
     });
+
+
   }
 
-let login_register_area = document.querySelector(".box")
+let container_area = document.querySelector(".container")
 
-function show_interface() {
+function new_restaurant_form(event) {
+    event.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
+    container_area.innerHTML = `
+      <div class="box">
+        <h2>Criar novo restaurante</h2>
+        <form action="sendData" method="POST">
+            <label>Nome do restaurante:</label>
+            <input id="restaurante_name" class="input" type="text">
+
+            <label >Nome do gerente:</label>
+            <input id="username" class="input" type="text">
+
+            <label>Senha do gerente:</label>
+            <input id="password" class="input" type="password">
+
+            <div class="btn-box">
+                <button type="button" class="btn btn-secondary" onclick="SendData(event, 'register')">Cadastrar</button>
+            </div>
+        </form>   
+      </div>
+    
+    `
 }

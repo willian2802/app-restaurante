@@ -17,12 +17,14 @@ def acess_login_page():
 #  Login and Register
 @app.route('/login_register_staf', methods=['POST'])
 def login():
+    print("login")
     
     data = request.get_json()
-    action = data['action']
-    restaurante_name = data["restaurante_name"]
-    username = data['username']
-    password = data['password']
+    input_data = data.get('inputData')
+    action = input_data['action']
+    restaurante_name = input_data["restaurante_name"]
+    username = input_data['username']
+    password = input_data['password']
 
     # limpa os dados de sessão
     # session['user_id'] = ""
