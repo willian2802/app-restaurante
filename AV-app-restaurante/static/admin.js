@@ -9,7 +9,7 @@ function SendData(event, action) {
   // Corrija o ID do input
   var inputData = {
     action: acao_desejada,
-    restaurante_name: $("#restaurante_name").val(),
+    restaurant_name: $("#restaurant_name").val(),
     username: $("#username").val(),
     password: $("#password").val()
   };
@@ -39,7 +39,7 @@ function new_restaurant_form(event) {
         <h2>Criar novo restaurante</h2>
         <form action="sendData" method="POST">
             <label>Nome do restaurante:</label>
-            <input id="restaurante_name" class="input" type="text">
+            <input id="restaurant_name" class="input" type="text">
 
             <label >Nome do gerente:</label>
             <input id="username" class="input" type="text">

@@ -17,18 +17,24 @@ def acess_login_page():
 #  Login and Register
 @app.route('/login_register_staf', methods=['POST'])
 def login():
+    # clear session data
+    # session['user_id'] = ""
+    # session['authentication'] = ""
+
     print("login")
     
     data = request.get_json()
-    input_data = data.get('inputData')
-    action = input_data['action']
-    restaurante_name = input_data["restaurante_name"]
-    username = input_data['username']
-    password = input_data['password']
+    print(data)
+    username = data['username']
+    restaurant_name = data['restaurant_name']
+    password = data['password']
+    action = data['action']
 
-    # limpa os dados de sessão
-    # session['user_id'] = ""
-    # session['authentication'] = ""
+
+    # initialize the session
+    session['user_id'] = ""
+    session['authentication'] = ""
+    # session['restaurant_name'] = ""
 
     if data is None:
         print("data is null")
