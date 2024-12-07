@@ -1,3 +1,4 @@
+// LOGIN AND REGISTER
 // send to the server the username, password and action(register, login etc)
 function SendData(event, action) {
     event.preventDefault(); // Evita o comportamento padrão de envio do formulário
@@ -6,13 +7,17 @@ function SendData(event, action) {
     acao_desejada = action
     console.log("Action: " + acao_desejada);
 
-  // Corrija o ID do input
   var inputData = {
     action: acao_desejada,
     restaurant_name: $("#restaurant_name").val(),
     username: $("#username").val(),
     password: $("#password").val()
   };
+
+  if (!inputData.restaurant_name || !inputData.username || !inputData.password) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
 
     console.log(inputData);
   
@@ -23,9 +28,9 @@ function SendData(event, action) {
       data: JSON.stringify(inputData), // Remove the extra nesting
       success: function(response) {
         // ...
+        
       }
     });
-
 
   }
 
@@ -48,10 +53,35 @@ function new_restaurant_form(event) {
             <input id="password" class="input" type="password">
 
             <div class="btn-box">
-                <button type="button" class="btn btn-secondary" onclick="SendData(event, 'register')">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" onclick="create_new_restaurant(event)">Cadastrar</button>
             </div>
         </form>   
       </div>
-    
     `
+}
+
+
+function create_new_restaurant(event) {
+    event.preventDefault(); // avoid the default form submission
+
+    var inputData = {
+      restaurant_name: $("#restaurant_name").val(),
+      username: $("#username").val(),
+      password: $("#password").val()
+    };
+
+    if (!inputData.restaurant_name || !inputData.username || !inputData.password) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "/create_restaurant",
+      contentType: "application/json",
+      data: JSON.stringify(inputData), // Remove the extra nesting
+      success: function(response) {
+        // ...
+      }
+    });
 }

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session
 from flask_socketio import SocketIO
+from MongoDB import add_new_restaurant
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -30,7 +31,6 @@ def login():
     password = data['password']
     action = data['action']
 
-
     # initialize the session
     session['user_id'] = ""
     session['authentication'] = ""
@@ -41,6 +41,23 @@ def login():
 
     return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
 
+
+@app.route('/manegement_page')
+def manegement_page():
+    return render_template('manegement-page.html')
+
+# Create new restaurant
+@app.route('/create_restaurant', methods=['POST'])
+def create_restaurant():
+    new_restaurant_data = request.get_json()
+
+    # restaurant_name, gerent_name and password to the gerernt acount
+    create_restaurant = add_new_restaurant(new_restaurant_data)
+
+    if create_restaurant == True:
+        return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo.'})
+    else:
+        return jsonify({'message': f'Erro ao criar o restaurante.'})
 
 
 if __name__ == '__main__':

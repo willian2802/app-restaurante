@@ -3,7 +3,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 # Conecta ao MongoDB pegando o url pelo arquivo .env
-# no Mongo_URI bote o seu URI do seu mongoDB, no arquivo URL.env
+# no Mongo_URI bote o seu URI do seu mongoDB atlas, no arquivo URL.env
 
 import os
 from dotenv import load_dotenv
@@ -20,8 +20,37 @@ if uri is None:
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 
-db = client['sample_mflix']
-restaurant_collection = db['restaurants']
+db = client['restaurante_app']
+restaurant_collection = db['restaurant_data']
+
+def add_new_restaurant(new_restaurant_data):
+    print("?????????????????????????????????????????????????????????????????????????????????")
+    # restaurants = restaurant_collection.find()
+    # return restaurants
+
+    list_to_insert = new_restaurant_data
+
+    # creat a new restaurant if the name is not being used in the database
+    if not restaurant_collection.find_one({
+        "restaurant_name": list_to_insert['restaurant_name'],
+    }):
+        # Cria um novo restaurante
+        restaurant_collection.insert_one(list_to_insert)
+        return True
+
+    # # Atualiza o restaurante com o novo restaurante
+    # restaurant_collection.update_one({
+    #     "restaurant_name": list_to_insert['restaurant_name'],
+    # }, {
+    #     "$set": {
+    #         "gerent_name": list_to_insert['gerent_name'],
+    #         "password": list_to_insert['password']
+    #     }
+    # }):
+    
+    # restaurant_collection.insert_one(list_to_insert)
+
+# add_new_restaurant()
 
 
 def insert_list(list_to_insert):
@@ -74,7 +103,7 @@ def register_user(username, password):
     return True
 
 def login_user(username, password):
-    # Lógica de login
+    # login user
     user = users_collection.find_one({"username": username, "password": password})
 
     if user:
