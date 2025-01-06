@@ -23,20 +23,41 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['restaurante_app']
 restaurant_collection = db['restaurant_data']
 
+# add new restaurant to the DB
 def add_new_restaurant(new_restaurant_data):
-    print("?????????????????????????????????????????????????????????????????????????????????")
-    # restaurants = restaurant_collection.find()
-    # return restaurants
 
     list_to_insert = new_restaurant_data
 
-    # creat a new restaurant if the name is not being used in the database
+    # creat a new restaurant if the name is not being used in the database       
     if not restaurant_collection.find_one({
-        "restaurant_name": list_to_insert['restaurant_name'],
+        "restaurant_name": list_to_insert['restaurant_name']
     }):
+        new_restaurant_doc = {
+            "restaurant_name": list_to_insert['restaurant_name'],
+            "gerent_name": list_to_insert['username'],
+            "password": list_to_insert['password'],
+            "staf_list": []  # array vazio para armazenar funcionários
+        }
+    restaurant_collection.insert_one(new_restaurant_doc)
+    return True
+
+
+#     new_staff_member = {
+#     "nome": "Willian",
+#     "status": "online",
+#     "nivel_de_autorizacao": 1
+# }
+# restaurant_collection.update_one({
+#     "restaurant_name": list_to_insert['restaurant_name']
+# }, {
+#     "$push": {
+#         "staf_list": new_staff_member
+#     }
+# })
+        
         # Cria um novo restaurante
-        restaurant_collection.insert_one(list_to_insert)
-        return True
+        # restaurant_collection.insert_one(list_to_insert)
+        # return True
 
     # # Atualiza o restaurante com o novo restaurante
     # restaurant_collection.update_one({
@@ -89,25 +110,57 @@ def get_user_history(user_id):
         return False
     return user_data
 
-# Login e registro de usuário
-def register_user(username, password):
-    db = client['sample_mflix']
-    collection = db['Market_users']
 
-    # verifica se o nome de usuário ja esta sendo usado no DB
-    existing_user = collection.find_one({"username": username})
-    if existing_user:
-        return False
+# login and register user
+def login_register_user(username, password, restaurant_name,action):
 
-    collection.insert_one({'username': username, 'password': password})
+    if action == "login":
+        existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
+        if existing_user:
+            return (True, "Esse nome de usuário ja esta sendo usado")
+    else:
+        # verify if the username is already being used in the DB
+        existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
+        if existing_user:
+            return (False, "Esse nome de usuário ja esta sendo usado")
+        
+        # existing_user = restaurant_collection.find_one
+
+
+        restaurant_collection.insert_one({'username': username, 'password': password})
     return True
 
-def login_user(username, password):
-    # login user
-    user = users_collection.find_one({"username": username, "password": password})
+    return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
 
-    if user:
-        session['user_id'] = str(user['_id'])
-        return True
-    else:
+
+def register_user(username, password, restaurant_name):
+    # verify if the username is already being used in the DB,
+    #  if yes return False
+    existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
+    if existing_user:
         return False
+    else:
+        # create and add a new staf member to the restaurant in the DB
+        new_staff_member = {
+            "username": username,
+            "password": password,
+            "authorization_level": 3
+        }
+        restaurant_collection.update_one({
+            "restaurant_name": restaurant_name
+        }, {
+            "$push": {
+                "staf_list": new_staff_member
+            }
+        })
+        return True
+
+# Login
+def login_user(username, password, restaurant_name):
+
+    # verify if the username and password is the same has the in the DB
+    existing_user = restaurant_collection.find_one({"restaurant_name": restaurant_name, "username": username, "password": password})
+    if existing_user:
+        return True
+    
+    return False

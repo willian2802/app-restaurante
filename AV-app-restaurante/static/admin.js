@@ -18,8 +18,6 @@ function SendData(event, action) {
     alert("Por favor, preencha todos os campos.");
     return;
   }
-
-    console.log(inputData);
   
     $.ajax({
       type: "POST",
@@ -27,8 +25,7 @@ function SendData(event, action) {
       contentType: "application/json",
       data: JSON.stringify(inputData), // Remove the extra nesting
       success: function(response) {
-        // ...
-        
+       success(response)
       }
     });
 
@@ -84,4 +81,40 @@ function create_new_restaurant(event) {
         // ...
       }
     });
+}
+
+
+// admin restaurant setings and managemnent UI
+
+
+function show_staff_settings(event,staf_list) {
+  event.preventDefault();
+  let setings_container_area = document.querySelector(".container")
+
+  let staff_menbers = staf_list
+
+  setings_container_area.innerHTML = `
+    <div class="settings_box">
+      <div class="settings_header">
+        <h2>Funcionarios</h2>
+      </div>
+      <div class="settings_content">
+        <form action="sendData" method="POST">
+          <div class="settings_form">
+            <label>Nome do restaurante:</label>
+            <input id="restaurant_name" class="input" type="text">
+
+            <label>Nome do gerente:</label>
+            <input id="username" class="input" type="text">
+
+            <label>Senha do gerente:</label>
+            <input id="password" class="input" type="password">
+
+            <label>Nível de acesso:</label>
+            <input id="access_level" class="input" type="text">
+          </div>
+        </form>
+      </div>
+      <div class="settings_footer"></div>
+    `
 }
