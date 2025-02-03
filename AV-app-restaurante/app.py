@@ -21,6 +21,7 @@ def login():
     # clear session data
     session['user_id'] = ""
     session['authentication'] = ""
+    session['authorization_level'] = ""
     
     # data structure
     data = request.get_json()
@@ -31,9 +32,12 @@ def login():
     action = data['action']
 
     if action == "login":
-        login_status = login_user(username, password, restaurant_name)
+        login_status, authorization_level = login_user(username, password, restaurant_name)
         if login_status == False:
             return jsonify({'message': f'tentativa de login falhou.'})
+        # add the authorization level
+        session['authorization_level'] = authorization_level
+        return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
     else:
         login_status = register_user(username, password, restaurant_name)
 
@@ -44,6 +48,7 @@ def login():
     session['user_id'] = username
     # session['authentication'] = ""
     session['restaurant_name'] = restaurant_name
+
 
     return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
 

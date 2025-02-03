@@ -111,28 +111,7 @@ def get_user_history(user_id):
     return user_data
 
 
-# login and register user
-def login_register_user(username, password, restaurant_name,action):
-
-    if action == "login":
-        existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
-        if existing_user:
-            return (True, "Esse nome de usuário ja esta sendo usado")
-    else:
-        # verify if the username is already being used in the DB
-        existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
-        if existing_user:
-            return (False, "Esse nome de usuário ja esta sendo usado")
-        
-        # existing_user = restaurant_collection.find_one
-
-
-        restaurant_collection.insert_one({'username': username, 'password': password})
-    return True
-
-    return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
-
-
+# Register
 def register_user(username, password, restaurant_name):
     # verify if the username is already being used in the DB,
     #  if yes return False
@@ -157,10 +136,12 @@ def register_user(username, password, restaurant_name):
 
 # Login
 def login_user(username, password, restaurant_name):
-
-    # verify if the username and password is the same has the in the DB
-    existing_user = restaurant_collection.find_one({"restaurant_name": restaurant_name, "username": username, "password": password})
+    # verify if the restaurant exists in the DB
+    existing_user = restaurant_collection.find_one({"restaurant_name": restaurant_name})
     if existing_user:
-        return True
-    
+        # verify if the username and password is the same has the in the DB
+        for staff in existing_user['staf_list']:
+            if staff['username'] == username and staff['password'] == password:
+                authorization_level = staff['authorization_level']
+                return (True, authorization_level)
     return False
