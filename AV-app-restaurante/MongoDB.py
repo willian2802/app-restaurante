@@ -115,7 +115,7 @@ def get_user_history(user_id):
 def register_user(username, password, restaurant_name):
     # verify if the username is already being used in the DB,
     #  if yes return False
-    existing_user = restaurant_collection.find_one({"username": username,"restaurant_name": restaurant_name})
+    existing_user = restaurant_collection.find_one({"restaurant_name": restaurant_name,"staf_list": {"$elemMatch": {"username": username}}})
     if existing_user:
         return False
     else:
@@ -123,7 +123,7 @@ def register_user(username, password, restaurant_name):
         new_staff_member = {
             "username": username,
             "password": password,
-            "authorization_level": 3
+            "authorization_level": 1
         }
         restaurant_collection.update_one({
             "restaurant_name": restaurant_name
@@ -144,4 +144,4 @@ def login_user(username, password, restaurant_name):
             if staff['username'] == username and staff['password'] == password:
                 authorization_level = staff['authorization_level']
                 return (True, authorization_level)
-    return False
+    return (False, 0)

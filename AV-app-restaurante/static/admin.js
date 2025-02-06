@@ -1,5 +1,11 @@
 // LOGIN AND REGISTER
 // send to the server the username, password and action(register, login etc)
+
+
+function messageAlert(response) {
+  alert(response)
+}
+
 function SendData(event, action) {
     event.preventDefault(); // Evita o comportamento padrão de envio do formulário
     console.log("Sending data to server");
@@ -25,7 +31,8 @@ function SendData(event, action) {
       contentType: "application/json",
       data: JSON.stringify(inputData), // Remove the extra nesting
       success: function(response) {
-       success(response)
+        // show alert message to the user
+        messageAlert(response.message)
       }
     });
 

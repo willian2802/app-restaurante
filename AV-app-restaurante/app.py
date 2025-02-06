@@ -15,7 +15,7 @@ def acess_login_page():
     return render_template('admin.html')
 
 
-#  Login and Register
+#  Login and Register staf members
 @app.route('/login_register_staf', methods=['POST'])
 def login():
     # clear session data
@@ -35,7 +35,7 @@ def login():
         login_status, authorization_level = login_user(username, password, restaurant_name)
         if login_status == False:
             return jsonify({'message': f'tentativa de login falhou.'})
-        # add the authorization level
+        # add the authorization level corresponding to the user
         session['authorization_level'] = authorization_level
         return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
     else:
@@ -50,7 +50,7 @@ def login():
     session['restaurant_name'] = restaurant_name
 
 
-    return jsonify({'message': f'Login bem-sucedido! Seja bem-vindo, {username}.'})
+    return jsonify({'message': f'{action} bem-sucedido! Seja bem-vindo, {username}.'})
 
 
 @app.route('/manegement_page')
